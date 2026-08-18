@@ -22,7 +22,7 @@ const LinkedinIcon = () => (
 
 export function Contact() {
   return (
-    <section id="contact" className="py-16 md:py-24 px-6 md:px-12 bg-[var(--charcoal)] text-white relative z-10 overflow-hidden">
+    <section id="contact" className="py-16 md:py-24 px-6 md:px-12 bg-[#050506]/40 backdrop-blur-sm text-white relative z-10 overflow-hidden border-t border-[#24242b]">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 border-b border-white/10 pb-16">
           <motion.div 
@@ -48,7 +48,7 @@ export function Contact() {
           >
             <a 
               href={`mailto:${personalInfo.email}`}
-              className="text-2xl md:text-3xl font-bold hover:text-[var(--accent-light)] transition-colors flex items-center gap-2"
+              className="text-lg md:text-2xl font-bold hover:text-[var(--accent-light)] transition-colors flex items-center gap-2"
             >
               {personalInfo.email}
               <ArrowUpRight size={28} />
@@ -63,8 +63,13 @@ export function Contact() {
           transition={{ delay: 0.4 }}
           className="mt-12 flex flex-col sm:flex-row justify-between items-center gap-8"
         >
-          <div className="text-white/40 font-bold uppercase tracking-widest text-sm">
-            © {new Date().getFullYear()} {personalInfo.name}
+          <div className="flex flex-col gap-1">
+            <div className="text-white/40 font-bold uppercase tracking-widest text-sm">
+              © {new Date().getFullYear()} {personalInfo.name}
+            </div>
+            <div className="text-white/30 font-medium uppercase tracking-widest text-xs">
+              Designed & Built with Next.js & Three.js
+            </div>
           </div>
           
           <div className="flex items-center gap-8">

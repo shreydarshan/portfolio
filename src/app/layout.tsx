@@ -15,12 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shrey Darshan — AI/ML Student & Software Developer",
-  description: "Portfolio of Shrey Darshan, showcasing work in Artificial Intelligence, Machine Learning, and Software Development.",
+  title: "Shrey Darshan | AI/ML Student · Software Developer · Builder",
+  description: "AI/ML student building practical software, intelligent systems and real-world solutions.",
   keywords: ["AI", "Machine Learning", "Software Developer", "Portfolio", "Shrey Darshan"],
   openGraph: {
-    title: "Shrey Darshan | AI/ML Engineer",
-    description: "Portfolio of Shrey Darshan, showcasing work in AI, ML, and Software Development.",
+    title: "Shrey Darshan | AI/ML Student · Software Developer · Builder",
+    description: "AI/ML student building practical software, intelligent systems and real-world solutions.",
     type: "website",
   },
 };
@@ -35,7 +35,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] selection:bg-[var(--accent)] selection:text-white">
+      <body className="min-h-full flex flex-col bg-transparent text-[var(--foreground)] selection:bg-[var(--accent)] selection:text-white">
         <SceneBackground />
         <Navbar />
         <main className="relative z-10 flex flex-col min-h-screen">

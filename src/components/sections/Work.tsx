@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { projects } from "@/data/portfolio";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
@@ -26,25 +27,19 @@ const GithubIcon = ({ size = 24, className = "" }: { size?: number, className?: 
 const SwarmTrafficVisual = () => {
   return (
     <div className="absolute inset-0 bg-[#07070a] overflow-hidden flex items-center justify-center">
-      {/* Background Grid */}
       <div className="absolute inset-0 opacity-10" style={{
         backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
         backgroundSize: '30px 30px'
       }}></div>
       
-      {/* Horizontal Road */}
       <div className="absolute w-full h-24 bg-[#111116] border-y border-white/10 flex items-center shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-         {/* Lanes */}
          <div className="w-full h-1 border-t-2 border-dashed border-white/20"></div>
       </div>
       
-      {/* Vertical Road */}
       <div className="absolute h-full w-24 bg-[#111116] border-x border-white/10 flex justify-center shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-         {/* Lanes */}
          <div className="h-full w-1 border-l-2 border-dashed border-white/20"></div>
       </div>
       
-      {/* Intersection Node */}
       <div className="absolute w-6 h-6 bg-indigo-500/10 rounded-sm border border-indigo-500/30 flex flex-wrap gap-1 p-1 z-10 shadow-[0_0_20px_rgba(99,102,241,0.2)]">
         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse delay-75"></div>
@@ -52,15 +47,6 @@ const SwarmTrafficVisual = () => {
         <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
       </div>
       
-      {/* 
-        Simulating deterministic lane traffic.
-        Lane 1: Eastbound (bottom half of horizontal road)
-        Lane 2: Westbound (top half of horizontal road)
-        Lane 3: Southbound (left half of vertical road)
-        Lane 4: Northbound (right half of vertical road)
-      */}
-      
-      {/* Eastbound Vehicles */}
       {[0, 1, 2].map((i) => (
         <motion.div
           key={`eb-${i}`}
@@ -71,7 +57,6 @@ const SwarmTrafficVisual = () => {
         />
       ))}
 
-      {/* Westbound Vehicles */}
       {[0, 1, 2, 3].map((i) => (
         <motion.div
           key={`wb-${i}`}
@@ -82,33 +67,22 @@ const SwarmTrafficVisual = () => {
         />
       ))}
 
-      {/* Southbound Vehicles (Waiting at Red Light) */}
       {[0, 1].map((i) => (
         <motion.div
           key={`sb-${i}`}
           className="absolute w-1.5 h-3 bg-red-400 rounded-sm shadow-[0_0_10px_rgba(248,113,113,0.6)]"
-          style={{ 
-            left: 'calc(50% - 12px)',
-            // Fixed positions waiting at the intersection line
-            top: `calc(50% - ${24 + (i * 20)}px)` 
-          }}
+          style={{ left: 'calc(50% - 12px)', top: `calc(50% - ${24 + (i * 20)}px)` }}
         />
       ))}
 
-      {/* Northbound Vehicles (Waiting at Red Light) */}
       {[0, 1, 2].map((i) => (
         <motion.div
           key={`nb-${i}`}
           className="absolute w-1.5 h-3 bg-red-400 rounded-sm shadow-[0_0_10px_rgba(248,113,113,0.6)]"
-          style={{ 
-            left: 'calc(50% + 6px)',
-            // Fixed positions waiting at the intersection line
-            top: `calc(50% + ${24 + (i * 20)}px)` 
-          }}
+          style={{ left: 'calc(50% + 6px)', top: `calc(50% + ${24 + (i * 20)}px)` }}
         />
       ))}
       
-      {/* Priority/Emergency Vehicle (Blue Glow) */}
       <motion.div
         className="absolute w-4 h-2 bg-blue-400 rounded-sm shadow-[0_0_15px_rgba(96,165,250,0.8)] z-20"
         style={{ top: 'calc(50% + 6px)' }}
@@ -120,103 +94,124 @@ const SwarmTrafficVisual = () => {
 };
 
 export function Work() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeProject = projects[activeIdx];
+
   return (
-    <section id="work" className="py-16 md:py-24 px-6 md:px-12 relative bg-[var(--background)]">
+    <section id="work" className="py-24 px-6 md:px-12 relative z-10 border-t border-[#24242b] bg-[#050506]/40 backdrop-blur-sm">
       <div className="container mx-auto max-w-7xl">
+        
+        {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16 flex items-end justify-between border-b border-[var(--charcoal)]/10 pb-6"
+          className="mb-12 flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4"
         >
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-[#F5F5F5]">
             SELECTED WORK
           </h2>
-          <span className="text-sm font-bold tracking-widest text-[var(--accent)] hidden sm:block">
-            03 FEATURED PROJECTS
+          <span className="text-sm font-bold tracking-widest text-[var(--accent-light)]">
+            03 PROJECTS
           </span>
         </motion.div>
 
-        <div className="flex flex-col gap-24">
-          {projects.map((project, index) => (
-            <motion.div 
-              key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="group flex flex-col gap-6"
-            >
-              <div className="flex flex-col gap-2">
-                <div className="text-xs font-bold tracking-widest text-[var(--accent)]">
-                  0{index + 1} — {project.title.toUpperCase()}
+        {/* Compact Showcase Area */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:h-[600px]">
+          
+          {/* Navigation Sidebar */}
+          <div className="flex flex-row lg:flex-col gap-4 lg:w-1/4 overflow-x-auto no-scrollbar pb-4 lg:pb-0">
+            {projects.map((project, idx) => (
+              <button
+                key={project.id}
+                onClick={() => setActiveIdx(idx)}
+                className={`flex-shrink-0 text-left px-6 py-4 rounded-xl border transition-all duration-300 ${
+                  activeIdx === idx 
+                  ? "bg-white/10 border-white/20 shadow-lg" 
+                  : "bg-transparent border-transparent hover:bg-white/5"
+                }`}
+              >
+                <div className="text-xs font-bold tracking-widest mb-1 opacity-50">
+                  0{idx + 1}
                 </div>
-                <p className="text-sm font-medium tracking-wide text-[var(--foreground)]/60">
-                  {project.category}
-                </p>
-              </div>
-
-              {/* Project Visual */}
-              <div className="relative w-full aspect-video bg-[var(--charcoal)]/5 overflow-hidden rounded-md border border-[var(--charcoal)]/10 shadow-sm">
-                {project.id === "lumen-books" || project.id === "anda-vyapar" ? (
-                   // If the user hasn't added the image yet, Next.js Image component will throw an error or show broken image.
-                   // We will use standard img tag with an error fallback, or just next/image assuming the user places it.
-                   // To ensure it doesn't break development before the user adds the files, we provide a clean fallback.
-                   <div className="relative w-full h-full bg-gray-100 flex items-center justify-center">
-                     <Image 
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-                        onError={(e) => {
-                          // Hide the broken image icon if the image doesn't exist yet
-                          e.currentTarget.style.display = 'none';
-                        }}
-                     />
-                     <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 -z-10">
-                        <p className="text-sm uppercase tracking-widest font-bold">Image Placeholder</p>
-                        <p className="text-xs mt-2">Save image to {project.image}</p>
-                     </div>
-                   </div>
-                ) : project.id === "swarm-traffic" ? (
-                   <SwarmTrafficVisual />
-                ) : null}
-              </div>
-
-              {/* Project Details */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-8">
-                  <p className="text-lg md:text-xl font-medium leading-relaxed text-[var(--foreground)]/90">
-                    {project.shortDescription}
-                  </p>
+                <div className={`text-lg md:text-xl font-bold uppercase tracking-wide ${activeIdx === idx ? "text-[#F5F5F5]" : "text-white/70"}`}>
+                  {project.title}
                 </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Active Project Detail */}
+          <div className="lg:w-3/4 h-full relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeProject.id}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+                className="w-full h-full flex flex-col rounded-2xl border border-[#24242B] bg-[#0D0D10] overflow-hidden shadow-2xl"
+              >
                 
-                <div className="lg:col-span-4 flex flex-col gap-6 lg:items-end">
-                  <div className="flex flex-wrap gap-2 lg:justify-end">
-                    {project.technologies.slice(0, 5).map(tech => (
-                      <span key={tech} className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-[var(--charcoal)]/5 text-[var(--charcoal)] rounded-full">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                {/* Visual Area (Top 60-70%) */}
+                <div className="relative w-full h-[300px] lg:h-[400px] border-b border-white/10 bg-[#111]">
+                  {activeProject.id === "lumen-books" || activeProject.id === "anda-vyapar" ? (
+                    <Image 
+                      src={activeProject.image}
+                      alt={activeProject.title}
+                      fill
+                      className="object-cover object-top opacity-90 hover:opacity-100 transition-opacity duration-500"
+                    />
+                  ) : activeProject.id === "swarm-traffic" ? (
+                    <SwarmTrafficVisual />
+                  ) : null}
                   
-                  <div className="flex items-center gap-6 mt-1">
-                    {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold tracking-wider hover:text-[var(--accent)] transition-colors">
-                        <GithubIcon size={16} /> GITHUB
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold tracking-wider hover:text-[var(--accent)] transition-colors">
-                        <ExternalLink size={16} /> LIVE DEMO
-                      </a>
-                    )}
+                  {/* Category Tag */}
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">
+                      {activeProject.category}
+                    </span>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Details Area (Bottom 30-40%) */}
+                <div className="p-6 md:p-8 flex flex-col justify-between flex-grow">
+                  <div>
+                    <h3 className="text-2xl font-bold text-[#F5F5F5] mb-2">{activeProject.title}</h3>
+                    <p className="text-sm md:text-base text-[#A0A0A8] font-medium max-w-2xl">
+                      {activeProject.shortDescription}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mt-6">
+                    <div className="flex flex-wrap gap-2">
+                      {activeProject.technologies.slice(0, 4).map(tech => (
+                        <span key={tech} className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 bg-white/5 border border-white/10 text-white/60 rounded-full">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                      {activeProject.githubUrl && (
+                        <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-bold tracking-widest text-white/60 hover:text-white transition-colors">
+                          <GithubIcon size={16} /> GITHUB
+                        </a>
+                      )}
+                      {activeProject.liveUrl && (
+                        <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs font-bold tracking-widest text-[var(--accent-light)] hover:text-white transition-colors">
+                          <ExternalLink size={16} /> LIVE
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          
         </div>
       </div>
     </section>

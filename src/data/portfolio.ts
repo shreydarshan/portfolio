@@ -35,7 +35,7 @@ export const projects: Project[] = [
       "Cloud/Backend Synchronization"
     ],
     githubUrl: "https://github.com/shreydarshan",
-    image: "/images/projects/lumen-books.jpg",
+    image: "/images/projects/lumen-books.png",
     featured: true,
   },
   {
@@ -56,7 +56,7 @@ export const projects: Project[] = [
       "Offline-first Workflow"
     ],
     githubUrl: "https://github.com/shreydarshan/Anda-Vyapar",
-    image: "/images/projects/anda-vyapar.jpg",
+    image: "/images/projects/anda-vyapar.png",
     featured: true,
   },
   {

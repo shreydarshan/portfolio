@@ -26,7 +26,7 @@ export function SceneBackground() {
   if (!isClient) return null;
 
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none bg-[#050505]">
+    <div className="fixed inset-0 z-0 pointer-events-none bg-[#050505]">
       <Canvas
         camera={{ position: [0, 0, 15], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
