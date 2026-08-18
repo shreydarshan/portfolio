@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  /* Very light gray/off-white background */
+  --background: #f7f7f7;
+  /* Near-black typography */
+  --foreground: #111111;
+  /* Dark charcoal UI elements */
+  --charcoal: #222222;
+  /* Subtle electric blue/violet accent */
+  --accent: #4f46e5;
+  --accent-light: #6366f1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* For dark mode, we'll swap but keep the elegant feel */
+    --background: #0a0a0a;
+    --foreground: #f4f4f4;
+    --charcoal: #1f1f1f;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--charcoal);
+  border-radius: 4px;
+}
+
+/* Base interactive transitions */
+.interactive-hover {
+  transition: all 0.3s ease-out;
+}
+.interactive-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* Utility to hide scrollbar where needed but allow scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
