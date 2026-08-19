@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shrey Darshan — Developer Portfolio
 
-## Getting Started
+> Personal portfolio showcasing my projects, technical skills, and journey in software development, AI/ML, and intelligent systems.
 
-First, run the development server:
+🌐 **Live Portfolio:** https://shreydarshan.vercel.app/
+
+💻 **GitHub:** https://github.com/shreydarshan  
+🔗 **LinkedIn:** https://www.linkedin.com/in/shrey-darshan-69431732a
+
+---
+
+## About
+
+This repository contains my personal developer portfolio, designed to present my work, technical skills, projects, and experience through an interactive and modern web experience.
+
+The portfolio focuses on software development, artificial intelligence, machine learning, data structures, and intelligent systems.
+
+---
+
+## Featured Projects
+
+### 🚦 Swarm Traffic Signal Simulation
+
+A traffic simulation project using swarm-intelligence concepts to dynamically optimize traffic signals and reduce congestion.
+
+**Focus:** AI/ML • Swarm Intelligence • Traffic Optimization • Simulation
+
+🔗 Repository:  
+https://github.com/shreydarshan/swarm-traffic-signal-simulation
+
+---
+
+### 📄 AI Resume Analyzer
+
+An AI-powered application designed to analyze resumes and provide useful insights based on resume content and job requirements.
+
+**Focus:** Artificial Intelligence • NLP • Python • Resume Analysis
+
+🔗 Repository:  
+https://github.com/shreydarshan/AI-Resume-Analyzer
+
+---
+
+### 💰 AI Expense Analyzer
+
+An intelligent expense analysis project focused on understanding and organizing financial data.
+
+**Focus:** AI • Data Analysis • Python • Intelligent Systems
+
+🔗 Repository:  
+https://github.com/shreydarshan/AI-Expense-Analyzer
+
+---
+
+### 🥚 Anda Vyapar
+
+A business management and billing application designed for an egg wholesale business.
+
+Features include billing, order management, customer ledgers, payment tracking, offline functionality, cloud backup, and thermal receipt printing.
+
+**Focus:** Full-Stack Development • Business Software • Electron • Cloud Database
+
+🔗 Repository:  
+https://github.com/shreydarshan/Anda-Vyapar
+
+---
+
+## Technical Skills
+
+### Programming
+- Python
+- C
+- SQL
+
+### AI / Machine Learning
+- Machine Learning
+- Artificial Intelligence
+- Natural Language Processing
+- Data Analysis
+
+### Development
+- HTML
+- CSS
+- JavaScript
+- TypeScript
+- React
+- Next.js
+- Node.js
+
+### Databases & Tools
+- SQL
+- Oracle RDBMS
+- Supabase
+- Git
+- GitHub
+- VS Code
+
+### Other
+- Data Structures & Algorithms
+- Object-Oriented Programming
+- MATLAB
+- AutoCAD
+
+---
+
+## Portfolio
+
+The portfolio includes:
+
+- Interactive landing page
+- About section
+- Project showcase
+- Technical skills
+- Systems / development work
+- Learning journey
+- Contact section
+- Responsive design
+- Interactive 3D elements
+
+---
+
+## Tech Stack
+
+This portfolio is built using:
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Three.js**
+- **React Three Fiber**
+- **Tailwind CSS**
+- **Vercel**
+
+---
+
+## Development
+
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/shreydarshan/portfolio.git
+cd portfolio
